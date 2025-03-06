@@ -1,0 +1,18 @@
+package pages
+
+import "github.com/amjadfqs/go-htmx-starter/templates/components"
+
+templ Home() {
+	@components.Layout("Home Page") {
+		<div class="max-w-lg mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
+			<h1 class="text-3xl font-bold mb-6 text-center">Go + HTMX Starter</h1>
+			<p class="mb-4 text-gray-700">
+				This is a minimal starter template for building web applications with Go, HTMX, and Tailwind CSS.
+			</p>
+			<div class="mt-8">
+				<h2 class="text-xl font-semibold mb-2">Try HTMX:</h2>
+				@components.HtmxDemo()
+			</div>
+		</div>
+	}
+}

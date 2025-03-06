@@ -1,0 +1,57 @@
+package pages
+
+import "time"
+
+templ HtmxExample() {
+	<div id="example-response" class="p-6 bg-green-50 dark:bg-green-900 rounded-lg border border-green-200 dark:border-green-700 shadow-md mt-4 animate-fade-in">
+		<div class="flex items-center mb-3">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 dark:text-green-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+			</svg>
+			<h3 class="text-lg font-medium text-green-800 dark:text-green-300">HTMX Request Successful</h3>
+		</div>
+		<p class="text-green-700 dark:text-green-300 mb-3">
+			This content was dynamically loaded with HTMX without a full page refresh!
+		</p>
+		<div class="bg-white dark:bg-green-800 rounded border border-green-200 dark:border-green-600 p-3 mb-3">
+			<pre class="text-sm text-gray-800 dark:text-green-200 whitespace-pre-wrap font-mono">Server response time: { time.Now().Format("15:04:05.000") }</pre>
+		</div>
+		<!-- Client Information Section -->
+		<div class="mt-4 mb-4">
+			<h4 class="text-md font-semibold text-green-700 dark:text-green-300 mb-2">Your Client Information:</h4>
+			<div
+				class="client-info-container bg-white dark:bg-green-800 rounded border border-green-200 dark:border-green-600 p-3"
+				hx-get="/api/client-info"
+				hx-trigger="load"
+				hx-swap="innerHTML"
+			>
+				<div class="flex justify-center items-center py-4">
+					<svg class="animate-spin h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+						<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+						<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+					</svg>
+					<span class="ml-2 text-green-600 dark:text-green-400">Loading client information...</span>
+				</div>
+			</div>
+		</div>
+		<div class="mt-4 text-right">
+			<button
+				class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors duration-200 focus:outline-none focus:ring focus:ring-green-200"
+				hx-post="/api/example"
+				hx-target="#example-response"
+				hx-swap="outerHTML"
+				hx-indicator="#loading-indicator"
+			>
+				Reload Example
+			</button>
+		</div>
+		<!-- Loading indicator -->
+		<div id="loading-indicator" class="htmx-indicator flex items-center justify-center py-4">
+			<svg class="animate-spin h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+				<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+				<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+			</svg>
+			<span class="ml-2 text-green-600 dark:text-green-400">Loading...</span>
+		</div>
+	</div>
+}

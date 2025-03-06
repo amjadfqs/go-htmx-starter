@@ -1,0 +1,18 @@
+package components
+
+templ HtmxDemo() {
+	<div class="border p-4 rounded-lg bg-gray-50">
+		<h3 class="font-medium mb-2">HTMX Demo</h3>
+		<button
+			class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+			hx-post="/api/example"
+			hx-target="#result"
+			hx-swap="innerHTML"
+		>
+			Click me
+		</button>
+		<div id="result" class="mt-4">
+			<!-- HTMX will replace this content -->
+		</div>
+	</div>
+}

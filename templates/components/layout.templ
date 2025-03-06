@@ -1,0 +1,121 @@
+package components
+
+templ Layout(title string) {
+	<!DOCTYPE html>
+	<html lang="en" class="h-full">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ title } | Go + HTMX</title>
+			<link href="/static/css/style.css" rel="stylesheet"/>
+			<script src="/static/js/htmx.min.js"></script>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+			<!-- Add dark mode support - Initial setup -->
+			<script>
+        // Check for saved theme preference or use system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+		</head>
+		<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col text-gray-800 dark:text-gray-200 transition-colors duration-200">
+			<!-- Header with improved navigation -->
+			<header class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div class="flex justify-between h-16">
+						<div class="flex items-center">
+							<nav class="hidden md:ml-8 md:flex md:items-center md:space-x-4">
+								<a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+									<i class="fas fa-home mr-1"></i> Home
+								</a>
+								<a href="/about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+									<i class="fas fa-info-circle mr-1"></i> About
+								</a>
+							</nav>
+						</div>
+						<div class="flex items-center">
+							<button id="theme-toggle" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+								<i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden"></i>
+								<i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
+							</button>
+							<!-- Mobile menu button -->
+							<div class="md:hidden ml-2">
+								<button type="button" id="mobile-menu-button" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+									<i class="fas fa-bars"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Mobile menu, show/hide based on menu state. -->
+				<div id="mobile-menu" class="md:hidden hidden">
+					<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700">
+						<a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">
+							<i class="fas fa-home mr-2"></i> Home
+						</a>
+						<a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">
+							<i class="fas fa-info-circle mr-2"></i> About
+						</a>
+					</div>
+				</div>
+			</header>
+			<!-- Main content with subtle background pattern -->
+			<main class="flex-grow container mx-auto px-4 py-8 sm:px-6 lg:px-8 relative">
+				<div class="max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative z-10">
+					{ children... }
+				</div>
+			</main>
+			<!-- Simple footer -->
+			<footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto">
+				<div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 dark:text-gray-400 text-sm">
+					<p>Go + HTMX Starter Template © 2023</p>
+				</div>
+			</footer>
+			<!-- Place scripts at the end of the body for better performance -->
+			<script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Theme toggle functionality
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+            // Set initial icon state
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+
+            // Toggle the theme when button is clicked
+            themeToggleBtn.addEventListener('click', function() {
+                // Toggle icons
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+
+                // Toggle theme
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+            });
+        });
+    </script>
+		</body>
+	</html>
+}
