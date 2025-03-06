@@ -3,7 +3,7 @@
 A lightweight, modern starter template for building web applications with Go, HTMX, and Tailwind CSS.
 
 ![Go](https://img.shields.io/badge/Go-1.21+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![HTMX](https://img.shields.io/badge/HTMX-1.9.5-6366F1?style=for-the-badge&logo=html5&logoColor=white)
+![HTMX](https://img.shields.io/badge/HTMX-2.0.4-6366F1?style=for-the-badge&logo=html5&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4.0+-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Templ](https://img.shields.io/badge/Templ-Latest-FF5A1F?style=for-the-badge&logo=go&logoColor=white)
 
