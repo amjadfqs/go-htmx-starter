@@ -43,7 +43,7 @@ func Home() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"max-w-lg mx-auto my-8 p-6 bg-white rounded-lg shadow-md\"><h1 class=\"text-3xl font-bold mb-6 text-center\">Go + HTMX Starter</h1><p class=\"mb-4 text-gray-700\">This is a minimal starter template for building web applications with Go, HTMX, and Tailwind CSS.</p><div class=\"mt-8\"><h2 class=\"text-xl font-semibold mb-2\">Try HTMX:</h2>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"max-w-lg mx-auto my-8 p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg\"><h1 class=\"text-3xl font-bold mb-6 text-center text-blue-400\">Go + HTMX Starter</h1><p class=\"mb-4 text-gray-300\">This is a minimal starter template for building web applications with Go, HTMX, and Tailwind CSS.</p><div class=\"mt-8 border-t border-gray-700 pt-6\"><h2 class=\"text-xl font-semibold mb-4 text-gray-200\">Try HTMX:</h2>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
