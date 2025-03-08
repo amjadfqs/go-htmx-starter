@@ -117,7 +117,6 @@ This starter includes basic HTMX examples to get you started:
 
 - Dynamic content loading with HTMX
 - Client information display
-- Simple toast notifications
 
 ## Deployment
 
